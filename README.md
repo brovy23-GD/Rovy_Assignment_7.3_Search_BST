@@ -61,7 +61,7 @@ Complexity:
 
 ### 3) InOrder Traversal
 
-Traverses the BST in Left → Node → Right order, printing all values in ascending sorted order.
+Traverses the BST in Left to Node to Right order, printing all values in ascending sorted order.
 
 Concepts demonstrated:
 
@@ -98,20 +98,17 @@ classDiagram
     class Program {
         +Main()
     }
-
     class TreeNode {
         +int val
         +TreeNode left
         +TreeNode right
         +TreeNode(int val, TreeNode left, TreeNode right)
     }
-
     class SearchBST {
         +Search(TreeNode root, int val) TreeNode
         +Insert(TreeNode root, int val) TreeNode
         +InOrderTraversal(TreeNode root)
     }
-
     Program --> SearchBST
     Program --> TreeNode
     SearchBST --> TreeNode
@@ -124,15 +121,13 @@ classDiagram
 ```mermaid
 flowchart TD
     A[Start] --> B[Input root and val]
-    B --> C{root == null?}
+    B --> C{root is null?}
     C -->|Yes| D[Return null]
-    C -->|No| E{root.val == val?}
+    C -->|No| E{root.val equals val?}
     E -->|Yes| F[Return root subtree]
-    E -->|No| G{val < root.val?}
+    E -->|No| G{val less than root.val?}
     G -->|Yes| H[Search left subtree]
     G -->|No| I[Search right subtree]
-    H --> C
-    I --> C
 ```
 
 ### 2) Insert BST Flowchart
@@ -140,15 +135,15 @@ flowchart TD
 ```mermaid
 flowchart TD
     A[Start] --> B[Input root and val]
-    B --> C{root == null?}
+    B --> C{root is null?}
     C -->|Yes| D[Create and return new TreeNode]
-    C -->|No| E{val < root.val?}
+    C -->|No| E{val less than root.val?}
     E -->|Yes| F[Insert into left subtree]
-    E -->|No| G{val > root.val?}
-    G -->|Yes| H[Insert into right subtree]
-    G -->|No| I[Duplicate - do nothing]
     F --> J[Return root]
+    E -->|No| G{val greater than root.val?}
+    G -->|Yes| H[Insert into right subtree]
     H --> J
+    G -->|No| I[Duplicate - do nothing]
     I --> J
 ```
 
@@ -156,7 +151,7 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A[Start] --> B{root == null?}
+    A[Start] --> B{root is null?}
     B -->|Yes| C[Return]
     B -->|No| D[Traverse left subtree]
     D --> E[Print root.val]
@@ -174,11 +169,11 @@ Input
 BST root = 8, search val = 6
 ```
 
-| Step | Current Node | Action                        |
-|------|-------------|-------------------------------|
-| 1    | 8           | 6 < 8, go left                |
-| 2    | 3           | 6 > 3, go right               |
-| 3    | 6           | 6 == 6, return subtree at 6   |
+| Step | Current Node | Action                      |
+|------|--------------|-----------------------------|
+| 1    | 8            | 6 < 8, go left              |
+| 2    | 3            | 6 > 3, go right             |
+| 3    | 6            | 6 == 6, return subtree at 6 |
 
 ### 2) Insert BST Trace Table Example
 
@@ -188,16 +183,16 @@ Input
 Insert values: 8, 3, 1, 6, 14, 4, 7, 13
 ```
 
-| Step | Value Inserted | Position         |
-|------|---------------|------------------|
-| 1    | 8             | Root             |
-| 2    | 3             | Left of 8        |
-| 3    | 1             | Left of 3        |
-| 4    | 6             | Right of 3       |
-| 5    | 14            | Right of 8       |
-| 6    | 4             | Left of 6        |
-| 7    | 7             | Right of 6       |
-| 8    | 13            | Left of 14       |
+| Step | Value Inserted | Position       |
+|------|----------------|----------------|
+| 1    | 8              | Root           |
+| 2    | 3              | Left of 8      |
+| 3    | 1              | Left of 3      |
+| 4    | 6              | Right of 3     |
+| 5    | 14             | Right of 8     |
+| 6    | 4              | Left of 6      |
+| 7    | 7              | Right of 6     |
+| 8    | 13             | Left of 14     |
 
 ### 3) InOrder Traversal Trace Table Example
 
@@ -208,23 +203,23 @@ BST built from: 8, 3, 1, 6, 14, 4, 7, 13
 ```
 
 | Step | Node Visited | Output |
-|------|-------------|--------|
-| 1    | 1           | 1      |
-| 2    | 3           | 3      |
-| 3    | 4           | 4      |
-| 4    | 6           | 6      |
-| 5    | 7           | 7      |
-| 6    | 8           | 8      |
-| 7    | 13          | 13     |
-| 8    | 14          | 14     |
+|------|--------------|--------|
+| 1    | 1            | 1      |
+| 2    | 3            | 3      |
+| 3    | 4            | 4      |
+| 4    | 6            | 6      |
+| 5    | 7            | 7      |
+| 6    | 8            | 8      |
+| 7    | 13           | 13     |
+| 8    | 14           | 14     |
 
 ## Time and Space Complexity Summary
 
-| Algorithm          | Time Complexity | Space Complexity | Notes                              |
-|--------------------|-----------------|------------------|------------------------------------|
-| Search BST         | O(h)            | O(h)             | h = height of tree                 |
-| Insert BST         | O(h)            | O(h)             | Recursive call stack               |
-| InOrder Traversal  | O(n)            | O(h)             | Visits every node once             |
+| Algorithm         | Time Complexity | Space Complexity | Notes                        |
+|-------------------|-----------------|------------------|------------------------------|
+| Search BST        | O(h)            | O(h)             | h = height of tree           |
+| Insert BST        | O(h)            | O(h)             | Recursive call stack         |
+| InOrder Traversal | O(n)            | O(h)             | Visits every node once       |
 
 ## How to Run
 
